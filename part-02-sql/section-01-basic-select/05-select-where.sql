@@ -18,7 +18,7 @@
 -- toán tử (operators) > >= < <= =(một dấu bằng thôi kh gioiongs C hay java ==), !=, <>
 -- nhiều điều kiện lọc đi kèm, dùng theeo logic operators, AND, OR, NOT (~~~~~~~ J, C: && || !=)
 -- Ví dụ: where city = N'Bình Dương'
---		  where City = B'Tiền Giang' AND GPA >= 8
+--		  where City = N'Tiền Giang' AND GPA >= 8
 
 
 -- Lọc liên quan đến giá trị/value/cell chứa gì, ta phải quan tâm đến data types
@@ -92,23 +92,27 @@ select * from Orders
 select * from Orders order by Freight desc
 
 -- 14. In thông tin bên đơn hàng sắp xếp giảm dần theo trọng lượn, trọng lượng >= 500kg
-select * from Orders where Freight >= 500 order by Freight desc --13
+select * from Orders where Freight >= 500 order by Freight desc
 
 -- 15. In ra thông tin bên đơn hàng sắp xếp giảm dần theo trọng lượng, trọng lượng nằm trong khoảng từ
 -- 100 đến 500 
-select * from Orders where Freight <= 500 and Freight >=100 order by Freight desc
+select * from Orders where Freight <= 500 and Freight >= 100  order by Freight desc
 
 -- 16. In ra thông tin bên đơn hàng sắp xếp giảm dần theo trọng lượng, trọng lượng nằm trong khoảng từ
 -- 100 đến 500 và ship bởi công ty giao vận số 1
-
-select * from Orders where Shipvia = 1 and Freight <= 500 and Freight >=100 order by Freight desc
+select * from Orders where Freight <= 500 and Freight >= 100 and ShipVia = 1 order by Freight 
 
 -- 17. và kh ship với London
+select * from Orders where ShipCity != 'London' 
 
 -- Rất cần thận khi trọng mệnh đề where lại có and or trộn với nhau, ta phải xài thêm ()
 -- đề phân tách thứ tự filter ... (ss and or khác nữa) AND (SS khác)
 
+-- 18. liệt kê khách hàng đến từ Mĩ hoặc Mexico
+select * from Customers where Country = 'USA' or Country = 'Mexico'
 
+-- 19. liệt kê khách hàng không đến từ Mĩ hoặc Mexico
+select * from Customers where Country != 'USA' and Country != 'Mexico'
 
-
-
+--20. liệt kê các nhân viên sinh ra trong đoạn [1960 1970]
+select * from Employees where YEAR(BirthDate) <= 1970 and YEAR(BirthDate) >= 1960 order by BirthDate desc
