@@ -64,8 +64,36 @@ select * from Orders where Freight >=
 --1. Liệt kê danh sách các công ty vận chuyển hàng
 --2. Liệt kê danh sách các đơn hàng đc vận chuyển bởi công ty giao vận
 --có mã số 1
---3. Liệt kê danh sách các đơn hàng đc vận chuyển bởi cty giao vận có tên Speedy Express I
+--3. Liệt kê danh sách các đơn hàng đc vận chuyển bởi cty giao vận có tên Speedy Express 
 --4. Liệt kê danh sách các đơn hàng đc vận chuyển bởi cty giao vận
 --có tên Speedy Express và trọng lượng từ 50-100
 --5. Liệt kê các mặt hàng cùng chủng loại với mặt hàng Filo Mix
 --6. Liệt kê các nhân viên trẻ tuổi hơn nhân viên Janet
+
+
+---
+--1.
+select * from Orders
+
+
+--2.
+select * from Orders where ShipVia = 1
+
+--3
+select * from Shippers where CompanyName = 'Speedy Express'
+
+--4. Liệt kê danh sách các đơn hàng đc vận chuyển bởi cty giao vận
+--có tên Speedy Express và trọng lượng từ 50-100
+--5. Liệt kê các mặt hàng cùng chủng loại với mặt hàng Filo Mix
+--6. Liệt kê các nhân viên trẻ tuổi hơn nhân viên Janet
+
+--4.
+select * from Orders where Freight <= 100 and Freight >= 50 and ShipVia = 
+(select ShipperID from Shippers where CompanyName = 'Speedy Express')
+
+--5. 
+select * from Products where CategoryID = (select CategoryID from Products where ProductName = 'Filo Mix')
+
+--6.
+select * from Employees where year(BirthDate) >= (select Year(BirthDate) from Employees where FirstName = 'Janet')
+

@@ -38,9 +38,13 @@ select * from Employees where FirstName like '____' --1
 select * from Products where ProductName like '%ch'
 select * from Products where ProductName like '%ch%'
 
---6. Những sản phẩm trong tên sản phâm rmaf từ cuối cùng là 5 kí tự
+--6. Những sản phẩm trong tên sản phẩm mà từ cuối cùng là 5 kí tự
 select * from Products where ProductName like '%_____'-- tên có từ 5 kí tự trở lên
 select * from Products where ProductName like '% _____' -- tên có ít nhất 2 từ
 														-- và từ cuối cùng có 5 kí tự  nhưng nó lại vô tình loại đi tên có đúng 5 kí tự
 
 select * from Products where ProductName like '% _____' or ProductName like '_____'
+
+
+
+select * from Products where ProductName like 'K%'
