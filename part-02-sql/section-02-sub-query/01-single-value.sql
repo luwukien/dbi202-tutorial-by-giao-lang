@@ -102,3 +102,4 @@ select * from Products where CategoryID = (select CategoryID from Products where
 --6.
 select * from Employees where year(BirthDate) >= (select Year(BirthDate) from Employees where FirstName = 'Janet')
 
+ 
