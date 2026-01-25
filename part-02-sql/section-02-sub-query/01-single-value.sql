@@ -74,13 +74,15 @@ select * from Orders where Freight >=
 ---
 --1.
 select * from Orders
+select * from Shippers
 
 
 --2.
 select * from Orders where ShipVia = 1
 
 --3
-select * from Shippers where CompanyName = 'Speedy Express'
+select * from Orders where ShipVia = ( select ShipperID from Shippers where CompanyName = 'Speedy Express')
+
 
 --4. Liệt kê danh sách các đơn hàng đc vận chuyển bởi cty giao vận
 --có tên Speedy Express và trọng lượng từ 50-100
@@ -89,6 +91,9 @@ select * from Shippers where CompanyName = 'Speedy Express'
 
 --4.
 select * from Orders where Freight <= 100 and Freight >= 50 and ShipVia = 
+(select ShipperID from Shippers where CompanyName = 'Speedy Express')
+
+select * from Orders where Freight between 50 and 100 and ShipVia = 
 (select ShipperID from Shippers where CompanyName = 'Speedy Express')
 
 --5. 
